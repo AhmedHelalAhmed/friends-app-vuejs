@@ -42,6 +42,18 @@ export default {
       // },
     },
   },
+  // emits: ["toggle-favorite"],
+  emits: {
+    "toggle-favorite": function (id) {
+      // validation for data in custom event
+      if (id) {
+        return true;
+      } else {
+        console.warn("Id is missing!");
+        return false;
+      }
+    },
+  },
   data() {
     return {
       detailsAreVisible: false,
@@ -52,7 +64,7 @@ export default {
       this.detailsAreVisible = !this.detailsAreVisible;
     },
     toggleFavorite() {
-      this.$emit("toggle-favorite", this.id); 
+      this.$emit("toggle-favorite", this.id);
     },
   },
 };
