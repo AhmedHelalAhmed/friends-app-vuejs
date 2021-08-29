@@ -30,12 +30,12 @@ export default {
       required: true,
     },
     isFavorite: {
-      type: String,
+      type: Boolean,
       required: false,
-      default: "0", // can be function
-      validator: function (value) {
-        return value === "1" || value === "0";
-      },
+      default: false, // can be function
+      // validator: function (value) {
+      //   return value === "1" || value === "0";
+      // },
     },
   },
   data() {
