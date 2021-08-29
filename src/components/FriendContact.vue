@@ -1,6 +1,6 @@
 <template>
   <li>
-    <h2>{{ name }} {{ friendIsFavorite ? "(Favorite)" : "" }}</h2>
+    <h2>{{ name }} {{ isFavorite ? "(Favorite)" : "" }}</h2>
     <button @click="toggleFavorite">Toggle Favorite</button>
     <button @click="toggleDetails">
       {{ detailsAreVisible ? "Hide" : "Show" }} Details
@@ -17,6 +17,10 @@ export default {
   // https://v3.vuejs.org/guide/component-props.html#prop-types
   // props: ["name", "phoneNumber", "emailAddress", "isFavorite"],
   props: {
+    id: {
+      type: String,
+      required: true,
+    },
     name: {
       type: String,
       required: true,
@@ -41,7 +45,6 @@ export default {
   data() {
     return {
       detailsAreVisible: false,
-      friendIsFavorite: this.isFavorite, // just initial value
     };
   },
   methods: {
@@ -49,8 +52,7 @@ export default {
       this.detailsAreVisible = !this.detailsAreVisible;
     },
     toggleFavorite() {
-      // this will not update data in parent
-      this.friendIsFavorite = !this.friendIsFavorite;
+      this.$emit("toggle-favorite", this.id); 
     },
   },
 };
