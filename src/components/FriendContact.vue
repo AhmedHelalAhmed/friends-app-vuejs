@@ -1,6 +1,6 @@
 <template>
   <li>
-    <h2>{{ name }} {{ friendIsFavorite === "1" ? "(Favorite)" : "" }}</h2>
+    <h2>{{ name }} {{ friendIsFavorite ? "(Favorite)" : "" }}</h2>
     <button @click="toggleFavorite">Toggle Favorite</button>
     <button @click="toggleDetails">
       {{ detailsAreVisible ? "Hide" : "Show" }} Details
@@ -41,12 +41,6 @@ export default {
   data() {
     return {
       detailsAreVisible: false,
-      friend: {
-        id: "Manuel",
-        name: "Manuel Lorenz",
-        phone: "0123 45678 90",
-        email: "manuel@localhost.com",
-      },
       friendIsFavorite: this.isFavorite, // just initial value
     };
   },
@@ -56,11 +50,7 @@ export default {
     },
     toggleFavorite() {
       // this will not update data in parent
-      if (this.friendIsFavorite === "1") {
-        this.friendIsFavorite = "0";
-      } else {
-        this.friendIsFavorite = "1";
-      }
+      this.friendIsFavorite = !this.friendIsFavorite;
     },
   },
 };
